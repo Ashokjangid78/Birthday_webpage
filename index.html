@@ -570,24 +570,28 @@ function updateCountdown(){
   const now = Date.now();
   const diff = target - now;
 
-  if(diff <= 0){
-    countdownBox.hidden = true;
-    countTitle.innerHTML = "Aaj Hai <span>Birthday! 🎉</span>";
-    countMsg.textContent =
-      "Happy Birthday Bhai! Aaj ka din full enjoy karo. 🥳🎂";
+ if(diff <= 0){
+  countdownBox.hidden = true;
+  countTitle.innerHTML = "Aaj Hai <span>Birthday! 🎉</span>";
+  countMsg.textContent =
+    "Happy Birthday Bhai! Aaj ka din full enjoy karo. 🥳🎂";
+
+  if(timer){
     clearInterval(timer);
-    return;
   }
+
+  return;
+}
 
   days.textContent = pad(Math.floor(diff / 86400000));
   hours.textContent = pad(Math.floor((diff / 3600000) % 24));
   mins.textContent = pad(Math.floor((diff / 60000) % 60));
   secs.textContent = pad(Math.floor((diff / 1000) % 60));
 }
+let timer;
 
 updateCountdown();
-const timer = setInterval(updateCountdown,1000);
-
+timer = setInterval(updateCountdown,1000);
 
 /* =========================================
    LETTER
